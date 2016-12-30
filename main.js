@@ -1,28 +1,17 @@
 import Exponent from 'exponent';
 import React from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
+import { Provider } from 'react-redux';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import store from './redux/store';
+import Router from './Router';
+import Colors from './constants/Colors';
 
-class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up main.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
+EStyleSheet.build(Colors);
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const App = () => (
+  <Provider store={store}>
+    <Router />
+  </Provider>
+);
 
 Exponent.registerRootComponent(App);
