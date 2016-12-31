@@ -26,6 +26,16 @@ export async function getOffsetGames(offset) {
   } catch (err) {
     console.log(err);
   }
+  return data;
+}
+
+export async function getGameStreams(game) {
+  let data;
+  try {
+    data = await fetchData(`streams/?game=${game}&`);
+  } catch (err) {
+    console.log(err);
+  }
   Reactotron.log({ data });
   return data;
 }

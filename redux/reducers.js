@@ -1,8 +1,9 @@
 import { combineReducers } from 'redux';
-import { GamesReducer } from '../modules';
+import { GamesReducer, GameStreamsReducer } from '../modules';
 
 const ApiReducer = combineReducers({
-  games: GamesReducer
+  games: GamesReducer,
+  gameStreams: GameStreamsReducer
 });
 
 export default combineReducers({
