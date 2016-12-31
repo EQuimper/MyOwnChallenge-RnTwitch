@@ -1,7 +1,7 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { HomeScreen } from './screens';
+import { HomeContainer } from './modules';
 
 const styles = EStyleSheet.create({
   navBar: {
@@ -26,7 +26,7 @@ export default () => (
       key="home"
       initial
       title="Games"
-      component={HomeScreen}
+      component={HomeContainer}
     />
   </Router>
 );
