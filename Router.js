@@ -1,7 +1,8 @@
 import React from 'react';
 import { Scene, Router } from 'react-native-router-flux';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { View, Platform } from 'react-native';
+import * as Animatable from 'react-native-animatable';
+import { Platform } from 'react-native';
 import { FontAwesome } from '@exponent/vector-icons';
 import { HomeContainer, GameStreamsContainer, GamesFollowScreen } from './modules';
 
@@ -37,9 +38,12 @@ export default () => (
     <Scene
       key="gameStreams"
       renderRightButton={props => (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Animatable.View
+          animation="fadeInRight"
+          style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}
+        >
           <FontAwesome name={props.liked ? 'heart' : 'heart-o'} color="white" size={30} />
-        </View>
+        </Animatable.View>
       )}
       component={GameStreamsContainer}
     />
