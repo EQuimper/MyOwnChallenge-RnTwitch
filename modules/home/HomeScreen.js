@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Image, View, ListView, Text, ActivityIndicator } from 'react-native';
-import Reactotron from 'reactotron-react-native';
+import { Image, View, ListView, Text, ActivityIndicator, TouchableOpacity } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import Colors from '../../constants/Colors';
+import { FabButton } from '../../components';
 
 class HomeScreen extends Component {
   state = {
@@ -38,9 +39,18 @@ class HomeScreen extends Component {
 
   _renderRow(row) {
     return (
-      <View style={styles.imageContainer}>
-        <Image source={{ uri: row.game.box.large }} style={styles.image} />
-      </View>
+      <TouchableOpacity
+        style={styles.imageContainer}
+        onPress={() => Actions.gameStreams({
+          game: row.game.name,
+          title: row.game.name,
+          liked: false
+        })}
+      >
+        <View style={{ flex: 1 }}>
+          <Image source={{ uri: row.game.box.large }} style={[styles.image, { position: 'relative' }]} />
+        </View>
+      </TouchableOpacity>
     );
   }
 
@@ -49,22 +59,25 @@ class HomeScreen extends Component {
     return this.state.loading && (
       <View style={{ marginVertical: 20 }}>
         <ActivityIndicator size="large" color={Colors.tPurple} />
-        <Text style={{ color: Colors.tPurple, fontWeight: 'bold', fontSize: 20 }}>Loading...</Text>
+        <Text style={styles.loadingText}>Loading...</Text>
       </View>
     );
   }
 
   render() {
     return (
-      <ListView
-        contentContainerStyle={styles.root}
-        renderRow={row => this._renderRow(row)}
-        enableEmptySections
-        automaticallyAdjustContentInsets={false}
-        dataSource={this.state.dataSource}
-        onEndReached={() => this._onRefresh()}
-        renderFooter={() => this._renderFooter()}
-      />
+      <View>
+        <ListView
+          contentContainerStyle={styles.root}
+          renderRow={row => this._renderRow(row)}
+          enableEmptySections
+          automaticallyAdjustContentInsets={false}
+          dataSource={this.state.dataSource}
+          onEndReached={() => this._onRefresh()}
+          renderFooter={() => this._renderFooter()}
+        />
+        <FabButton />
+      </View>
     );
   }
 }
@@ -92,6 +105,11 @@ const styles = EStyleSheet.create({
     flex: 1,
     width: null,
     height: null
+  },
+  loadingText: {
+    color: Colors.tPurple,
+    fontWeight: 'bold',
+    fontSize: 20
   }
 });
 
