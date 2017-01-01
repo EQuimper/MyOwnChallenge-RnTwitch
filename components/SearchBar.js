@@ -1,8 +1,9 @@
 import React from 'react';
 import { Text, View, TextInput } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import Reactotron from 'reactotron-react-native';
 
-const SearchBar = ({ navBarShow, filterGamesInput }) => (
+const SearchBar = ({ navBarShow, searchGamesInput }) => (
   <View style={styles.root}>
     {navBarShow ? (
       <TextInput
@@ -10,7 +11,8 @@ const SearchBar = ({ navBarShow, filterGamesInput }) => (
         selectionColor="white"
         placeholder="Search game..."
         style={styles.input}
-        onChangeText={txt => filterGamesInput(txt)}
+        returnKeyType="search"
+        onSubmitEditing={event => searchGamesInput(event.nativeEvent.text)}
       />
     ) : (
       <Text style={[styles.titleStyle, { fontSize: 18, alignSelf: 'center', marginTop: 20 }]}>

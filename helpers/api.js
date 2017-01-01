@@ -6,6 +6,7 @@ const { CLIENT_ID } = config;
 const rootUrl = 'https://api.twitch.tv/kraken';
 
 const fetchData = url => {
+  console.log(`${rootUrl}/${url}client_id=${CLIENT_ID}`);
   return fetch(`${rootUrl}/${url}client_id=${CLIENT_ID}`).then(res => res.json());
 }
 
@@ -33,6 +34,16 @@ export async function getGameStreams(game) {
   let data;
   try {
     data = await fetchData(`streams/?game=${game}&`);
+  } catch (err) {
+    console.log(err);
+  }
+  return data;
+}
+
+export async function searchGames(term) {
+  let data;
+  try {
+    data = await fetchData(`search/games?type=suggest&live=true&query=${term.toLowerCase().trim()}&`);
   } catch (err) {
     console.log(err);
   }
