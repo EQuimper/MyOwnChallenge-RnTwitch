@@ -11,7 +11,7 @@ export default (state = INITIAL_STATE, action) => {
     case TOGGLE_SEARCH_GAMES:
       return {
         strFilter: null,
-        searching: false,
+        searching: !state.searching,
         show: !state.show
       };
     case FILTER_GAMES_INPUT:

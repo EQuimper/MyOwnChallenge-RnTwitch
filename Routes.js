@@ -11,7 +11,8 @@ import {
   LiveStreamContainer,
   toggleSearchGames,
   resetGameStreams,
-  filterGamesInput
+  searchGamesInput,
+  GameResultsContainer
 } from './modules';
 import { SearchBar } from './components';
 
@@ -39,7 +40,7 @@ const styles = EStyleSheet.create({
   }
 });
 
-const Routes = ({ toggleSearchGames, resetGameStreams, filterGamesInput }) => (
+const Routes = ({ toggleSearchGames, resetGameStreams, searchGamesInput }) => (
   <Router
     sceneStyle={styles.sceneStyle}
     navigationBarStyle={styles.navBar}
@@ -51,7 +52,7 @@ const Routes = ({ toggleSearchGames, resetGameStreams, filterGamesInput }) => (
       initial
       titleProps={{ navBarShow: true }}
       title="HelloWorld"
-      renderTitle={({ navBarShow }) => <SearchBar navBarShow={navBarShow} filterGamesInput={filterGamesInput} />}
+      renderTitle={({ navBarShow }) => <SearchBar navBarShow={navBarShow} searchGamesInput={searchGamesInput} />}
       component={HomeContainer}
       renderRightButton={({ navBarShow }) => (
         <TouchableOpacity onPress={() => toggleSearchGames()}>
@@ -85,6 +86,11 @@ const Routes = ({ toggleSearchGames, resetGameStreams, filterGamesInput }) => (
       component={LiveStreamContainer}
     />
     <Scene
+      key="resultsGame"
+      title="Results"
+      component={GameResultsContainer}
+    />
+    <Scene
       key="gamesFollow"
       title="Games Followed"
       component={GamesFollowScreen}
@@ -96,5 +102,5 @@ export default connect(
   state => ({
     navBar: state.ui.navBar
   }),
-  { toggleSearchGames, resetGameStreams, filterGamesInput }
+  { toggleSearchGames, resetGameStreams, searchGamesInput }
 )(Routes);

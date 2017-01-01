@@ -1,8 +1,10 @@
 import Reactotron from 'reactotron-react-native';
-import { getAllGames, getOffsetGames } from '../../helpers/api';
+import { Actions } from 'react-native-router-flux';
+import { getAllGames, getOffsetGames, searchGames } from '../../helpers/api';
 
 export const FETCH_TOP_GAMES = 'FETCH_TOP_GAMES';
 export const FETCH_OFFSET_TOP_GAMES = 'FETCH_OFFSET_TOP_GAMES';
+export const SEARCH_GAMES_INPUT = 'SEARCH_GAMES_INPUT';
 
 export const fetchTopGames = () => {
   const promise = new Promise((resolve, reject) => {
@@ -19,8 +21,7 @@ export const fetchTopGames = () => {
   };
 };
 
-export const paginateGames = offset => {
-  // Reactotron.log({ offset });
+export const paginateGames = (offset) => {
   const promise = new Promise((resolve, reject) => {
     return getOffsetGames(offset)
       .then(
@@ -31,6 +32,22 @@ export const paginateGames = offset => {
 
   return {
     type: FETCH_OFFSET_TOP_GAMES,
+    payload: promise
+  };
+};
+
+export const searchGamesInput = term => {
+  // Actions.resultsGame();
+  const promise = new Promise((resolve, reject) => {
+    return searchGames(term)
+      .then(
+        res => resolve(res.games),
+        err => reject(err)
+      );
+  });
+
+  return {
+    type: SEARCH_GAMES_INPUT,
     payload: promise
   };
 };
