@@ -10,12 +10,19 @@ class HomeContainer extends Component {
     this.props.fetchTopGames();
   }
   render() {
-    const { data } = this.props;
+    const { data, paginateGames, searching, dataSearching } = this.props;
 
     if (!data.isFetched) {
       return <LoadingSpinner />;
     } else if (!data.error) {
-      return <HomeScreen games={data.games} paginateGames={this.props.paginateGames} />;
+      return (
+        <HomeScreen
+          dataSearching={dataSearching}
+          paginateGames={paginateGames}
+          games={data.games}
+          searching={searching}
+        />
+      );
     }
     return (
       <View>
@@ -27,7 +34,9 @@ class HomeContainer extends Component {
 
 export default connect(
   state => ({
-    data: state.api.games
+    data: state.api.games.gamesAll,
+    dataSearching: state.api.games.gamesSearch,
+    searching: state.ui.navBar.searching
   }),
   { fetchTopGames, paginateGames }
 )(HomeContainer);
