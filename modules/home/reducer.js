@@ -3,7 +3,8 @@ import {
   FETCH_TOP_GAMES,
   FETCH_OFFSET_TOP_GAMES,
   RESET_TOP_GAMES,
-  SEARCH_GAMES_INPUT
+  SEARCH_GAMES_INPUT,
+  RESET_SEARCH_GAMES_INPUT
 } from './actions';
 
 const INITIAL_STATE = {
@@ -60,6 +61,11 @@ const gamesSearch = (state = { ...INITIAL_STATE, search: false }, action) => {
       return { ...state,
         isFetched: true,
         error: action.payload
+      };
+    case RESET_SEARCH_GAMES_INPUT:
+      return {
+        ...INITIAL_STATE,
+        search: false
       };
     default:
       return state;
