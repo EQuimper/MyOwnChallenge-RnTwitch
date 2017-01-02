@@ -40,6 +40,19 @@ export async function getGameStreams(game) {
   return data;
 }
 
+export async function getGameStreamsOffset(game, offset) {
+  Reactotron.log('WOWOOWO');
+  Reactotron.log({ game, offset });
+  let data;
+  try {
+    data = await fetchData(`streams/?game=${game}&offset=${offset}&`);
+  } catch (err) {
+    console.log(err);
+  }
+  Reactotron.log({ data });
+  return data;
+}
+
 export async function searchGames(term) {
   let data;
   try {

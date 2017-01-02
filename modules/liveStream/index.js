@@ -1,3 +1,3 @@
-import LiveStreamContainer from './LiveStreamContainer';
+import LiveStreamScreen from './LiveStreamScreen';
 
-export { LiveStreamContainer };
+export { LiveStreamScreen };

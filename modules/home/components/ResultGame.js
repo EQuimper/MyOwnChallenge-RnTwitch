@@ -5,11 +5,12 @@ import * as Animatable from 'react-native-animatable';
 import { GameItem, FabButton } from '../../../components';
 
 const ResultGame = ({ games }) => (
-  <View style={{ flex: 1 }}>
-    {console.log({ games })}
+  <View style={styles.root}>
     {games.length > 0 ? (
-      <ScrollView contentContainerStyle={styles.root}>
-        {games.map((data, i) => <GameItem key={i} data={data} search />)}
+      <ScrollView contentContainerStyle={styles.list}>
+        {games.map((data, i) =>
+          <GameItem key={i} data={data} search />
+        )}
       </ScrollView>
     ) : (
       <View style={styles.rootNoResult}>
@@ -23,12 +24,15 @@ const ResultGame = ({ games }) => (
         </Animatable.Text>
       </View>
     )}
-    <FabButton />
+    <FabButton visible />
   </View>
 );
 
 const styles = EStyleSheet.create({
   root: {
+    flex: 1
+  },
+  list: {
     flexWrap: 'wrap',
     justifyContent: 'center',
     flexDirection: 'row',

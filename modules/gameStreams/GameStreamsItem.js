@@ -15,7 +15,7 @@ const GameStreamsItem = ({ stream }) => (
       name: stream.channel.name
     })}
   >
-    <Animatable.View animation="bounceInDown" duration={3000}>
+    <Animatable.View animation="bounceInDown" duration={2000}>
       <View style={styles.imageContainer}>
         <Image source={{ uri: stream.preview.large }} style={styles.images} />
       </View>
@@ -64,7 +64,6 @@ const styles = EStyleSheet.create({
     height: '8%',
     left: 0,
     top: 0,
-    // backgroundColor: 'rgba(0, 0, 0, 0.7)',
     alignSelf: 'stretch',
     justifyContent: 'space-between',
     width: '98%',

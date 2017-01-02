@@ -1,5 +1,10 @@
 import { combineReducers } from 'redux';
-import { GamesReducer, GameStreamsReducer, UiNavBarReducer } from '../modules';
+import {
+  GamesReducer,
+  GameStreamsReducer,
+  UiNavBarReducer,
+  gamesLikedReducer
+} from '../modules';
 
 const ApiReducer = combineReducers({
   games: GamesReducer,
@@ -7,10 +12,12 @@ const ApiReducer = combineReducers({
 });
 
 const UiReducer = combineReducers({
-  navBar: UiNavBarReducer
+  navBar: UiNavBarReducer,
 });
 
 export default combineReducers({
+  gamesLiked: gamesLikedReducer,
+  channelsLiked: () => [],
   api: ApiReducer,
   ui: UiReducer
 });

@@ -1,26 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { fetchGameStreams } from './actions';
+import { fetchGameStreams, paginateStreams } from './actions';
 import GameStreamsScreen from './GameStreamsScreen';
-import { LoadingSpinner } from '../../components';
+import { LoadingSpinner, ErrorPage } from '../../components';
+import Reactotron from 'reactotron-react-native';
 
 class GameStreamsContainer extends Component {
   componentWillMount() {
     this.props.fetchGameStreams(this.props.game);
   }
   render() {
-    const { data } = this.props;
+    const { data, paginateStreams, game, fetchGameStreams } = this.props;
     if (!data.isFetched) {
       return <LoadingSpinner />;
     } else if (!data.error) {
-      return <GameStreamsScreen streams={data.streams} />;
+      Reactotron.log(data.streams);
+      return (
+        <GameStreamsScreen
+          game={game}
+          fetchGameStreams={fetchGameStreams}
+          streams={data.streams}
+          paginateStreams={paginateStreams}
+        />
+      );
     }
-    return (
-      <View>
-        <Text>Error!!!</Text>
-      </View>
-    );
+    return <ErrorPage />;
   }
 }
 
@@ -28,5 +32,5 @@ export default connect(
   state => ({
     data: state.api.gameStreams
   }),
-  { fetchGameStreams }
+  { fetchGameStreams, paginateStreams }
 )(GameStreamsContainer);
