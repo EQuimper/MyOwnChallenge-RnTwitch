@@ -9,6 +9,7 @@
     "@exponent/ex-navigation": "^2.7.0",
     "@exponent/vector-icons": "~2.0.3",
     "exponent": "~12.0.3",
+    "lodash": "^4.17.4",
     "react": "~15.3.2",
     "react-native": "git+https://github.com/exponentjs/react-native#sdk-12.0.0",
     "react-native-action-button": "^2.0.18",
@@ -18,6 +19,7 @@
     "react-native-router-flux": "^3.37.0",
     "react-redux": "^5.0.1",
     "redux": "^3.6.0",
+    "redux-persist": "^4.0.1",
     "redux-promise-middleware": "^4.2.0",
     "redux-thunk": "^2.1.0",
     "reselect": "^2.5.4"

@@ -5,6 +5,7 @@
     "no-underscore-dangle": 0,
     "arrow-body-style": 0,
     "no-shadow": 0,
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "no-return-assign": 0
   }
 }
