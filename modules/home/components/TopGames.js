@@ -6,8 +6,8 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { FabButton, GameItem } from '../../components';
-import Colors from '../../constants/Colors';
+import { FabButton, GameItem } from '../../../components';
+import Colors from '../../../constants/Colors';
 
 class TopGames extends Component {
   state = {
