@@ -1,40 +1,40 @@
 import React from 'react';
-import {
-  View,
-  Text,
-  ScrollView
-} from 'react-native';
-import TopGames from './TopGames';
-import { GameItem, LoadingSpinner } from '../../components';
+import { Text } from 'react-native';
+import EStyleSheet from 'react-native-extended-stylesheet';
+import * as Animatable from 'react-native-animatable';
+import { LoadingSpinner, ErrorPage } from '../../components';
+import { ResultGame, TopGames } from './components';
 
-const ResultGame = ({ games }) => (
-  <View>
-    {console.log({ games })}
-    <ScrollView>
-      {games.map((data, i) => <GameItem key={i} data={data} search />)}
-    </ScrollView>
-  </View>
-);
-
-const HomeScreen = ({ searching, games, paginateGames, dataSearching }) => {
+const HomeScreen = ({ searching, games, paginateGames, dataSearching, checkLiked }) => {
   if (searching) {
-    console.log({ dataSearching });
     if (!dataSearching.search) {
       return (
-        <View><Text>Nothing Search</Text></View>
+        <Animatable.View style={styles.root} animation="fadeInUp" duration={1250}>
+          <Text style={styles.textStyle}>
+            Search By Games...
+          </Text>
+        </Animatable.View>
       );
     } else if (!dataSearching.isFetched) {
       return <LoadingSpinner />;
     } else if (!dataSearching.error) {
       return <ResultGame games={dataSearching.games} />;
     }
-    return (
-      <View>
-        <Text>Error!!!</Text>
-      </View>
-    );
+    return <ErrorPage />;
   }
-  return <TopGames games={games} paginateGames={paginateGames} />;
+  return <TopGames games={games} paginateGames={paginateGames} checkLiked={checkLiked} />;
 };
+
+const styles = EStyleSheet.create({
+  root: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+  textStyle: {
+    fontWeight: 'bold',
+    fontSize: 25
+  }
+});
 
 export default HomeScreen;

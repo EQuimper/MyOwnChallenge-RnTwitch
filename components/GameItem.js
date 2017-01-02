@@ -4,13 +4,14 @@ import { Actions } from 'react-native-router-flux';
 import { Image, TouchableOpacity } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const GameItem = ({ data, search }) => (
+const GameItem = ({ data, search, checkLiked }) => (
   <TouchableOpacity
     style={styles.imageContainer}
     onPress={() => Actions.gameStreams({
       game: search ? data.name : data.game.name,
+      image: search ? data.box.large : data.game.box.large,
       title: search ? data.name : data.game.name,
-      liked: false
+      liked: checkLiked(search ? data.name : data.game.name)
     })}
   >
     <Animatable.View style={{ flex: 1 }} animation="fadeIn" duration={1500}>
