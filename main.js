@@ -12,17 +12,22 @@ import './helpers/ReactotronConfig';
 
 EStyleSheet.build(Colors);
 
+
 class App extends Component {
   state = { rehydrated: false }
   componentWillMount() {
     persistStore(store, {
       storage: AsyncStorage,
-      whitelist: ['channelsLiked', 'gamesLiked'],
+      whitelist: ['gamesLiked', 'channelsLiked'],
       debounce: 500
-    }, () => this.setState({ rehydrated: true }));
+    }, () => this.setState({
+      rehydrated: true
+    }));
   }
   render() {
-    if (!this.state.rehydrated) { return <LoadingSpinner />; }
+    if (!this.state.rehydrated) {
+      return <LoadingSpinner />;
+    }
     return (
       <Provider store={store}>
         <Routes />

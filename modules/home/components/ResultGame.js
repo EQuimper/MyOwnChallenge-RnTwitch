@@ -4,12 +4,12 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import * as Animatable from 'react-native-animatable';
 import { GameItem, FabButton } from '../../../components';
 
-const ResultGame = ({ games }) => (
+const ResultGame = ({ games, checkLiked }) => (
   <View style={styles.root}>
     {games.length > 0 ? (
       <ScrollView contentContainerStyle={styles.list}>
         {games.map((data, i) =>
-          <GameItem key={i} data={data} search />
+          <GameItem key={i} data={data} search checkLiked={checkLiked} />
         )}
       </ScrollView>
     ) : (

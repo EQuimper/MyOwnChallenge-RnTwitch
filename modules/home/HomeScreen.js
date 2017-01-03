@@ -18,7 +18,7 @@ const HomeScreen = ({ searching, games, paginateGames, dataSearching, checkLiked
     } else if (!dataSearching.isFetched) {
       return <LoadingSpinner />;
     } else if (!dataSearching.error) {
-      return <ResultGame games={dataSearching.games} />;
+      return <ResultGame games={dataSearching.games} checkLiked={checkLiked} />;
     }
     return <ErrorPage />;
   }
