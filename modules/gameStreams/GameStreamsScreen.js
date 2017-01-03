@@ -85,7 +85,9 @@ class GameStreamsScreen extends Component {
         <ListView
           ref={ref => this.streamsList = ref}
           onScroll={e => this._onScroll(e)}
-          renderRow={row => <GameStreamsItem stream={row} />}
+          renderRow={row =>
+            <GameStreamsItem stream={row} checkLikedChannel={this.props.checkLikedChannel} />
+          }
           enableEmptySections
           automaticallyAdjustContentInsets={false}
           dataSource={this.state.dataSource}

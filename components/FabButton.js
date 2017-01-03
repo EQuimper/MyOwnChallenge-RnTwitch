@@ -11,7 +11,7 @@ const FabButton = ({ visible }) => (
       <ActionButton buttonColor={Colors.tPurple}>
         <ActionButton.Item
           buttonColor="red"
-          title="Games Follows"
+          title="Following"
           onPress={() => Actions.follow()}
         >
           <FontAwesome name="heart" size={20} color="white" />

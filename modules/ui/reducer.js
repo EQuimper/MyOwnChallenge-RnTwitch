@@ -17,10 +17,7 @@ export const gamesLikedReducer = (state = [], action) => {
 export const channelsLikedReducer = (state = [], action) => {
   switch (action.type) {
     case LIKED_CHANNEL:
-      return [...state, {
-        name: action.name,
-        image: action.image
-      }];
+      return [...state, action.obj];
     case DISLIKED_CHANNEL:
       return state.filter(game => game.name !== action.name);
     default:

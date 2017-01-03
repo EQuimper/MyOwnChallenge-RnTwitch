@@ -8,11 +8,19 @@ import { Components } from 'exponent';
 import { truncateText, numberWithComma } from '../../helpers';
 import Colors from '../../constants/Colors';
 
-const GameStreamsItem = ({ stream }) => (
+const GameStreamsItem = ({ stream, checkLikedChannel }) => (
   <TouchableOpacity
     onPress={() => Actions.liveStream({
       title: stream.channel.display_name,
-      name: stream.channel.name
+      name: stream.channel.name,
+      liked: checkLikedChannel(stream.channel.name),
+      game: {
+        name: stream.channel.name,
+        viewers: stream.viewers,
+        status: stream.channel.status,
+        image: stream.preview.large,
+        display_name: stream.channel.display_name
+      }
     })}
   >
     <Animatable.View animation="bounceInDown" duration={2000}>

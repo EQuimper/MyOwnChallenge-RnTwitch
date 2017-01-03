@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Scene, Router } from 'react-native-router-flux';
+import { Scene, Router, Actions } from 'react-native-router-flux';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import { Text, Platform, View, TouchableOpacity } from 'react-native';
 import { FontAwesome } from '@exponent/vector-icons';
@@ -12,11 +12,18 @@ import {
   toggleSearchGames,
   resetGameStreams,
   searchGamesInput,
-  toggleLiked
+  toggleLiked,
+  toggleLikedChannel,
 } from './modules';
 import { SearchBar } from './components';
 
-const Routes = ({ toggleSearchGames, resetGameStreams, searchGamesInput, toggleLiked }) => (
+const Routes = ({
+  toggleSearchGames,
+  resetGameStreams,
+  searchGamesInput,
+  toggleLiked,
+  toggleLikedChannel
+}) => (
   <Router
     sceneStyle={styles.sceneStyle}
     navigationBarStyle={styles.navBar}
@@ -63,12 +70,20 @@ const Routes = ({ toggleSearchGames, resetGameStreams, searchGamesInput, toggleL
       key="liveStream"
       renderRightButton={props => (
         <View style={styles.rightButton}>
-          <FontAwesome name={props.liked ? 'heart' : 'heart-o'} color="white" size={30} />
+          <TouchableOpacity onPress={() => toggleLikedChannel(props.game)}>
+            <View style={styles.rightButton}>
+              <FontAwesome
+                name={props.liked}
+                color="white" size={30}
+              />
+            </View>
+          </TouchableOpacity>
         </View>
       )}
       component={LiveStreamScreen}
     />
     <Scene
+      onBack={() => Actions.popTo('home')}
       key="follow"
       title="My Follows"
       component={FollowsContainer}
@@ -104,5 +119,11 @@ export default connect(
   state => ({
     navBar: state.ui.navBar
   }),
-  { toggleSearchGames, resetGameStreams, searchGamesInput, toggleLiked }
+  {
+    toggleSearchGames,
+    resetGameStreams,
+    searchGamesInput,
+    toggleLiked,
+    toggleLikedChannel
+   }
 )(Routes);

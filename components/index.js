@@ -4,6 +4,7 @@ import SearchBar from './SearchBar';
 import GameItem from './GameItem';
 import ErrorPage from './ErrorPage';
 import ButtonScrollTop from './ButtonScrollTop';
+import NoFollowYet from './NoFollowYet';
 
 export {
   LoadingSpinner,
@@ -11,5 +12,6 @@ export {
   SearchBar,
   GameItem,
   ErrorPage,
-  ButtonScrollTop
+  ButtonScrollTop,
+  NoFollowYet
 };

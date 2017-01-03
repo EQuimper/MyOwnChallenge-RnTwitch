@@ -23,7 +23,6 @@ export const toggleLiked = (name, image) => (dispatch, getState) => {
 };
 
 const likedGame = (name, image) => {
-  console.log({ name, image });
   Actions.refresh({ liked: 'heart' });
   return { type: LIKED_GAME, name, image };
 };
@@ -31,4 +30,30 @@ const likedGame = (name, image) => {
 const dislikedGame = name => {
   Actions.refresh({ liked: 'heart-o' });
   return { type: DISLIKED_GAME, name };
+};
+
+export const checkLikedChannel = name => (dispatch, getState) => {
+  const channelsLiked = getState().channelsLiked;
+  const filterArr = channelsLiked.filter(game => game.name === name);
+  if (filterArr.length > 0) { return 'heart'; }
+  return 'heart-o';
+};
+
+export const toggleLikedChannel = obj => (dispatch, getState) => {
+  const channelsLiked = getState().channelsLiked;
+  const filterArr = channelsLiked.filter(game => game.name === obj.name);
+  if (filterArr.length > 0) {
+    return dispatch(dislikedChannel(obj.name));
+  }
+  return dispatch(likedChannel(obj));
+};
+
+const likedChannel = obj => {
+  Actions.refresh({ liked: 'heart' });
+  return { type: LIKED_CHANNEL, obj };
+};
+
+const dislikedChannel = name => {
+  Actions.refresh({ liked: 'heart-o' });
+  return { type: DISLIKED_CHANNEL, name };
 };

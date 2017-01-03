@@ -2,27 +2,38 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import EStyleSheet from 'react-native-extended-stylesheet';
-import { GamesList } from './components';
-import { checkLiked, toggleLiked } from '../ui';
+import { GamesList, ChannelsList } from './components';
+import { checkLiked, toggleLiked, checkLikedChannel, toggleLikedChannel } from '../ui';
 
-const FollowsContainer = ({ games, checkLiked, toggleLiked }) => (
+const FollowsContainer = ({
+  games,
+  checkLiked,
+  toggleLiked,
+  channels,
+  checkLikedChannel,
+  toggleLikedChannel
+}) => (
   <View style={styles.root}>
     <View style={styles.titleContainer}>
       <Text style={styles.title}>
         My Games
       </Text>
     </View>
-    <GamesList games={games} checkLiked={checkLiked} toggleLiked={toggleLiked} />
+    <GamesList
+      games={games}
+      checkLiked={checkLiked}
+      toggleLiked={toggleLiked}
+    />
     <View style={styles.titleContainer}>
       <Text style={styles.title}>
         My Channels
       </Text>
     </View>
-    <View style={styles.titleContainer}>
-      <Text style={styles.title}>
-        My Channels
-      </Text>
-    </View>
+    <ChannelsList
+      channels={channels}
+      checkLikedChannel={checkLikedChannel}
+      toggleLikedChannel={toggleLikedChannel}
+    />
   </View>
 );
 
@@ -33,7 +44,7 @@ const styles = EStyleSheet.create({
   titleContainer: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 1,
+    flex: 0.3,
     position: 'relative'
   },
   title: {
@@ -44,7 +55,8 @@ const styles = EStyleSheet.create({
 
 export default connect(
   state => ({
-    games: state.gamesLiked
+    games: state.gamesLiked,
+    channels: state.channelsLiked,
   }),
-  { checkLiked, toggleLiked }
+  { checkLiked, toggleLiked, checkLikedChannel, toggleLikedChannel }
 )(FollowsContainer);
