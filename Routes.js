@@ -7,12 +7,11 @@ import { FontAwesome } from '@exponent/vector-icons';
 import {
   HomeContainer,
   GameStreamsContainer,
-  GamesFollowScreen,
+  FollowsContainer,
   LiveStreamScreen,
   toggleSearchGames,
   resetGameStreams,
   searchGamesInput,
-  GameResultsContainer,
   toggleLiked
 } from './modules';
 import { SearchBar } from './components';
@@ -28,7 +27,7 @@ const Routes = ({ toggleSearchGames, resetGameStreams, searchGamesInput, toggleL
       key="home"
       initial
       titleProps={{ navBarShow: true }}
-      title="HelloWorld"
+      title="Games"
       renderTitle={({ navBarShow }) =>
         <SearchBar navBarShow={navBarShow} searchGamesInput={searchGamesInput} />
       }
@@ -70,14 +69,9 @@ const Routes = ({ toggleSearchGames, resetGameStreams, searchGamesInput, toggleL
       component={LiveStreamScreen}
     />
     <Scene
-      key="resultsGame"
-      title="Results"
-      component={GameResultsContainer}
-    />
-    <Scene
-      key="gamesFollow"
-      title="Games Followed"
-      component={GamesFollowScreen}
+      key="follow"
+      title="My Follows"
+      component={FollowsContainer}
     />
   </Router>
 );

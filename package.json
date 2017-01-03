@@ -1,8 +1,8 @@
 {
   "name": "rn-twitch",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Hello Exponent!",
-  "author": null,
+  "author": "Emanuel Quimper",
   "private": true,
   "main": "main.js",
   "dependencies": {
