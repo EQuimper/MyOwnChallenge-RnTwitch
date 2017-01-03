@@ -3,7 +3,8 @@ import {
   GamesReducer,
   GameStreamsReducer,
   UiNavBarReducer,
-  gamesLikedReducer
+  gamesLikedReducer,
+  channelsLikedReducer
 } from '../modules';
 
 const ApiReducer = combineReducers({
@@ -12,12 +13,12 @@ const ApiReducer = combineReducers({
 });
 
 const UiReducer = combineReducers({
-  navBar: UiNavBarReducer,
+  navBar: UiNavBarReducer
 });
 
 export default combineReducers({
   gamesLiked: gamesLikedReducer,
-  channelsLiked: () => [],
+  channelsLiked: channelsLikedReducer,
   api: ApiReducer,
   ui: UiReducer
 });

@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, ScrollView, Image, TouchableOpacity } from 'react-native';
+import { View, ScrollView, Image, TouchableOpacity, LayoutAnimation } from 'react-native';
 import { Components } from 'exponent';
 import { Actions } from 'react-native-router-flux';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -7,39 +7,49 @@ import { FontAwesome } from '@exponent/vector-icons';
 
 const colors = ['rgba(0, 0, 0, 0.7)', 'rgba(0, 0, 0, 0.1)', 'rgba(0, 0, 0, 0.7)'];
 
-const GamesList = ({ games, checkLiked, toggleLiked }) => (
-  <View style={{ flex: 2 }}>
-    <ScrollView horizontal>
-      {games.map((game, i) => (
-        <View style={styles.imageContainer} key={i}>
-          <Image source={{ uri: game.image }} style={styles.image} />
-          <Components.LinearGradient
-            colors={colors}
-            style={styles.imageContainerOverlays}
-          >
-            <TouchableOpacity
-              style={styles.overlaysIcon}
-              onPress={() => Actions.gameStreams({
-                game: game.name,
-                image: game.image,
-                title: game.name,
-                liked: checkLiked(game.name)
-              })}
+
+const GamesList = ({ games, checkLiked, toggleLiked }) => {
+  const _handleDelete = game => {
+    LayoutAnimation.easeInEaseOut();
+    return toggleLiked(game.name);
+  };
+  const _goToGames = game => {
+    return Actions.gameStreams({
+      game: game.name,
+      image: game.image,
+      title: game.name,
+      liked: checkLiked(game.name)
+    });
+  };
+  return (
+    <View style={{ flex: 2 }}>
+      <ScrollView horizontal pagingEnabled>
+        {games.map((game, i) => (
+          <View style={styles.imageContainer} key={i}>
+            <Image source={{ uri: game.image }} style={styles.image} />
+            <Components.LinearGradient
+              colors={colors}
+              style={styles.imageContainerOverlays}
             >
-              <FontAwesome name="eye" color="white" size={40} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.overlaysIcon}
-              onPress={() => toggleLiked(game.name)}
-            >
-              <FontAwesome name={checkLiked(game.name)} color="white" size={40} />
-            </TouchableOpacity>
-          </Components.LinearGradient>
-        </View>
-      ))}
-    </ScrollView>
-  </View>
-);
+              <TouchableOpacity
+                style={styles.overlaysIcon}
+                onPress={() => _goToGames(game)}
+              >
+                <FontAwesome name="eye" color="white" size={40} />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.overlaysIcon}
+                onPress={() => _handleDelete(game)}
+              >
+                <FontAwesome name={checkLiked(game.name)} color="white" size={40} />
+              </TouchableOpacity>
+            </Components.LinearGradient>
+          </View>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
 const styles = EStyleSheet.create({
   imageContainer: {

@@ -39,44 +39,6 @@ const styles = EStyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 20
-  },
-  list: {
-    // marginTop: '5%',
-  },
-  imageContainer: {
-    height: '35%',
-    width: '45%',
-    // flex: 1,
-    marginHorizontal: '1.5%',
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowColor: 'black',
-    shadowOpacity: 0.8
-  },
-  imageContainerOverlays: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    height: '35%',
-    width: '45%',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-  },
-  overlaysIcon: {
-    backgroundColor: 'transparent',
-    shadowOffset: {
-      width: 1,
-      height: 1,
-    },
-    shadowColor: 'black',
-    shadowOpacity: 0.6
-  },
-  image: {
-    flex: 1,
-    width: null,
-    height: null
   }
 });
 
