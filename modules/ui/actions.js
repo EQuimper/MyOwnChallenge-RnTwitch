@@ -3,6 +3,9 @@ import { Actions } from 'react-native-router-flux';
 export const LIKED_GAME = 'LIKED_GAME';
 export const DISLIKED_GAME = 'DISLIKED_GAME';
 
+export const LIKED_CHANNEL = 'LIKED_CHANNEL';
+export const DISLIKED_CHANNEL = 'DISLIKED_CHANNEL';
+
 export const checkLiked = name => (dispatch, getState) => {
   const gamesLiked = getState().gamesLiked;
   const filterArr = gamesLiked.filter(game => game.name === name);

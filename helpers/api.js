@@ -1,14 +1,10 @@
 import Reactotron from 'reactotron-react-native';
 import config from '../config';
 
-const { CLIENT_ID } = config;
-
 const rootUrl = 'https://api.twitch.tv/kraken';
 
-const fetchData = url => {
-  console.log(`${rootUrl}/${url}client_id=${CLIENT_ID}`);
-  return fetch(`${rootUrl}/${url}client_id=${CLIENT_ID}`).then(res => res.json());
-}
+const fetchData = url =>
+  fetch(`${rootUrl}/${url}client_id=${config.CLIENT_ID}`).then(res => res.json());
 
 export async function getAllGames() {
   let data;

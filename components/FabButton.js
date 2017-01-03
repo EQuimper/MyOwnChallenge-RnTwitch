@@ -12,7 +12,7 @@ const FabButton = ({ visible }) => (
         <ActionButton.Item
           buttonColor="red"
           title="Games Follows"
-          onPress={() => Actions.gamesFollow()}
+          onPress={() => Actions.follow()}
         >
           <FontAwesome name="heart" size={20} color="white" />
         </ActionButton.Item>
