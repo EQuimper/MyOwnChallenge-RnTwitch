@@ -1,4 +1,3 @@
-import Reactotron from 'reactotron-react-native';
 import config from '../config';
 
 const rootUrl = 'https://api.twitch.tv/kraken';
@@ -14,7 +13,7 @@ export async function getAllGames() {
     console.log(err);
   }
   return data;
-};
+}
 
 export async function getOffsetGames(offset) {
   let data;
@@ -37,25 +36,23 @@ export async function getGameStreams(game) {
 }
 
 export async function getGameStreamsOffset(game, offset) {
-  Reactotron.log('WOWOOWO');
-  Reactotron.log({ game, offset });
   let data;
   try {
     data = await fetchData(`streams/?game=${game}&offset=${offset}&`);
   } catch (err) {
     console.log(err);
   }
-  Reactotron.log({ data });
   return data;
 }
 
 export async function searchGames(term) {
   let data;
   try {
-    data = await fetchData(`search/games?type=suggest&live=true&query=${term.toLowerCase().trim()}&`);
+    data = await fetchData(
+      `search/games?type=suggest&live=true&query=${term.toLowerCase().trim()}&`
+    );
   } catch (err) {
     console.log(err);
   }
-  Reactotron.log({ data });
   return data;
 }
